@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 // 1. St question
-router.get('/get-movies',
+router.get('/movies',
     function(req, res) {
         let movies = ["vikrant rona", "james", "kgf", "kgf-2", ]
         res.send(movies)
@@ -14,31 +14,31 @@ router.get('/get-movies',
 module.exports = router;
 
 // 2 nd question
-router.get('/movies/:indexNumber', function(req, res) {
-    let movies = ["Rang de basanti", "the shining", "Lord of the rings", "Bats man begins"]
-    let index = req.params.indexNumber;
-    res.send(movies[index])
+// router.get('/movies/:indexNumber', function(req, res) {
+//     let movies = ["Rang de basanti", "the shining", "Lord of the rings", "Bats man begins"]
+//     let index = req.params.indexNumber;
+//     res.send(movies[index])
 
-});
-module.exports = router;
+// });
+// module.exports = router;
 
 
 
 // 3 rd question
 router.get('/movies/:indexNUmder', function(req, res) {
-    let movies = ["Rang de basanti", "the shining", "Lord of the rings", "Bats man begins"]
+    let moviesName = ["Rang de basanti", "the shining", "Lord of the rings", "Bats man begins"]
     let index = req.params.indexNUmder;
-    if (index > movies.length) {
+    if (index > moviesName.length) {
         return res.send("use the valid index")
     } else {
-        res.send(movies[index])
+        res.send(moviesName[index])
     }
 })
 module.exports = router;
 
 
 // 4th question
-router.get('/get-films', function(req, res) {
+router.get('/films', function(req, res) {
     let array = [{
         id: 1,
         name: "The Shining"
@@ -58,7 +58,7 @@ module.exports = router;
 
 
 // 5th question
-router.get('/get-films/:filmId', function(req, res) {
+router.get('/films/:filmId', function(req, res) {
     let array = [{
         id: 1,
         name: "The Shining"
