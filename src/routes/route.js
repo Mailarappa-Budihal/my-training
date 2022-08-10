@@ -75,6 +75,10 @@ module.exports = router;
 
 
 
+// Assignment 10th august 1st question
+
+
+
 let players = [{
         "name": "manish",
         "dob": "1/1/1995",
@@ -107,11 +111,11 @@ let players = [{
 
 router.post('/players', function(req, res) {
     let newPlayer = req.body
-    console.log(newPlayer)
+        // console.log(newPlayer)
     let newPlayerName = newPlayer.name
-    console.log(newPlayerName)
+        // console.log(newPlayerName)
     let isNameRepeated = false
-    console.log(isNameRepeated)
+        // console.log(isNameRepeated)
 
     for (i = 0; i < players.length; i++) {
         if (players[i].name == newPlayer.name) {
@@ -129,3 +133,18 @@ router.post('/players', function(req, res) {
 });
 
 module.exports = router;
+
+router.post("/players", function(req, res) {
+    let newPlayer = req.body
+    for (let i = 0; i < players.length; i++) {
+        let arr = players[i]
+        if (newPlayer.name == newPlayer) {
+            return res.send("This player is already exist")
+        }
+    }
+    players.push(newPlayer)
+    res.send({ data: players, status: true });
+
+
+})
+module.exports = router
