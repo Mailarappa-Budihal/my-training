@@ -148,3 +148,55 @@ router.post("/players", function(req, res) {
 
 })
 module.exports = router
+
+
+
+
+//  Problem of post-api ,12th August problem
+// voting problem Solution
+let persons = [{
+        name: "PK",
+        age: 10,
+        votingstatus: false
+    },
+    {
+        name: "Sk",
+        age: 20,
+        votingstatus: false
+    },
+    {
+        name: "AA",
+        age: 70,
+        votingstatus: false
+    },
+    {
+        name: "SC",
+        age: 5,
+        votingstatus: false
+    },
+    {
+        name: "HQ",
+        age: 40,
+        votingstatus: false
+    }
+]
+
+router.post('/persons', function(req, res) {
+
+    let votingAge = req.query.votingAge
+    let result = []
+
+    for (let i = 0; i < persons.length; i++) {
+        id = persons[i]
+        if (id.age >= 18 && votingAge >= 18) {
+            id.votingstatus = true
+            result.push(id)
+        }
+        if (id.age < 18 && votingAge < 18) {
+            res.send("your not eligible")
+        }
+
+    }
+    return res.send({ data: result, status: true })
+})
+module.exports = router;
