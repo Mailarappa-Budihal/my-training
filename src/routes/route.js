@@ -240,7 +240,7 @@ router.post('/newbook', UserController.newbook)
 module.exports = router;
 
 
-router.post('/listOfBooks', UserController.listOfBooks)
+router.get('/listOfBooks', UserController.listOfBooks)
     //  async function(req, res) {
     //     let listOfBooks = await UserModel.find()
     //     res.send({ msg: listOfBooks })
