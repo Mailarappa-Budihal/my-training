@@ -1,7 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
-const userModel = require('../models/userModel.js');
+const UserModel = require('../models/userModel.js');
 // const UserModel = require("../models/userModel")
 const UserController = require("../controllers/userController");
 
@@ -227,8 +227,22 @@ const UserController = require("../controllers/userController");
 
 
 router.post('/newbook', UserController.newbook)
+    // async function(req, res) {
+    //         let data = req.body
+    //         let newdata = await UserModel.create(data)
+    //         res.send({ msg: newdata })
+    //     })
+    // UserController.newbook)
     //     let data = req.body
     //     let newdata = await userModel.create(data)
     //     res.send({ msg: newdata })
-    // }); 
+    // });
+module.exports = router;
+
+
+router.post('/listOfBooks', UserController.listOfBooks)
+    //  async function(req, res) {
+    //     let listOfBooks = await UserModel.find()
+    //     res.send({ msg: listOfBooks })
+    // })
 module.exports = router;

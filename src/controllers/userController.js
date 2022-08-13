@@ -17,6 +17,13 @@ const newbook = async function(req, res) {
     res.send({ msg: newdata })
 }
 
+const listOfBooks = async function(req, res) {
+    let listOfBooks = await UserModel.find()
+    res.send({ msg: listOfBooks })
+}
+
+
 // module.exports.createUser = createUser
 // module.exports.getUser = getUser
 module.exports.newbook = newbook
+module.exports.listOfBooks = listOfBooks
