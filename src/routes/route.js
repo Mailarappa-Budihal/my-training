@@ -1,9 +1,11 @@
 const express = require('express');
 
 const router = express.Router();
-const UserModel = require('../models/userModel.js');
+// const UserModel = require('../models/userModel.js');
 // const UserModel = require("../models/userModel")
-const UserController = require("../controllers/userController");
+// const UserController = require("../controllers/userController");
+const BookModel = require("../models/bookModel");
+const BookController = require("../controllers/bookController");
 
 
 // router.get('/students/:name', function(req, res) {
@@ -219,14 +221,14 @@ const UserController = require("../controllers/userController");
 //     let allUsers = await userModel.find()
 //     res.send({ data: allUsers })
 // })
-// module.exports = router
-// router.post('/createUser', UserController.createUser)
 
+// router.post('/createUser', UserController.createUser)
+// module.exports = router
 // router.post('/getUser', UserController.getUser)
 // module.exports = router;
 
 
-router.post('/newbook', UserController.newbook)
+router.post('/newbook', BookController.newbook)
     // async function(req, res) {
     //         let data = req.body
     //         let newdata = await UserModel.create(data)
@@ -240,7 +242,7 @@ router.post('/newbook', UserController.newbook)
 module.exports = router;
 
 
-router.get('/listOfBooks', UserController.listOfBooks)
+router.get('/listOfBooks', BookController.listOfBooks)
     //  async function(req, res) {
     //     let listOfBooks = await UserModel.find()
     //     res.send({ msg: listOfBooks })
