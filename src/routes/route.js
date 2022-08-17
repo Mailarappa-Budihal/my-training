@@ -264,8 +264,8 @@ module.exports = router;
 router.post('/PerticularBooks', BookController2.getPerticularBooks)
 module.exports = router;
 
-// router.get('/getXINRBooks', BookController2.XINRBooks)
-// module.exports = router;
+router.get('/getXINRBooks', BookController2.getXINRBooks)
+module.exports = router;
 
-// router.get('/getRandomBooks', BookController2.getRandomBooks)
-// module.exports = router;
+router.get('/getRandomBooks', BookController2.getRandomBooks)
+module.exports = router;
