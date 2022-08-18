@@ -8,6 +8,10 @@ const BookModel = require("../models/bookModel");
 const BookModel2 = require("../models/bookModel2");
 const BookController = require("../controllers/bookController");
 const BookController2 = require('../controllers/bookController2')
+const BookModule3 = require('../models/bookModel3')
+const AuthorModel2 = require('../models/authorModel')
+const BookController3 = require('../controllers/bookController3')
+    // const AuthorController = require('../controllers/authorController')
 
 
 // router.get('/students/:name', function(req, res) {
@@ -258,6 +262,10 @@ module.exports = router;
 router.get('/bookList', BookController2.BookData)
 module.exports = router;
 
+router.get('/bookList1', BookController2.BookData2)
+module.exports = router;
+
+
 router.post('/BooksInYear', BookController2.getBooksInYear)
 module.exports = router;
 
@@ -268,4 +276,23 @@ router.get('/getXINRBooks', BookController2.getXINRBooks)
 module.exports = router;
 
 router.get('/getRandomBooks', BookController2.getRandomBooks)
+module.exports = router;
+
+router.post('/updateBook', BookController2.updateBook)
+module.exports = router;
+
+
+router.post('/createBook1', BookController3.createBook1)
+module.exports = router;
+
+router.post('/createAuthor', BookController3.createAuthor)
+module.exports = router;
+
+router.get('/byAuthorId', BookController3.byAuthorId)
+module.exports = router;
+
+router.get('/updateBook', BookController3.updateBook)
+module.exports = router;
+
+router.get('/bookRange', BookController3.bookRange)
 module.exports = router;
