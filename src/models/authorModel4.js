@@ -8,9 +8,8 @@ const authorSchema = new mongoose.Schema({
         required: true
     },
     age: Number,
-    address: String,
-    bookPrice: Number,
+    address: String
 
 }, { timestamps: true })
 
-module.exports = mongoose.model('Author', authorSchema)
+module.exports = mongoose.model('Author4', authorSchema)

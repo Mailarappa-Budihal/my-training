@@ -45,25 +45,42 @@ const router = express.Router();
 
 // router.post('/updateBook', BookController2.updateBook)
 // module.exports = router;
+
+
+//Assignment 18-08-2022
 // const BookModel3 = require('../models/bookModel3')
 // const AuthorModel3 = require('../models/authorModel')
-const BookModule3 = require('../models/bookModel3')
-const AuthorModel2 = require('../models/authorModel')
-const BookController3 = require('../controllers/bookController3')
+// const BookModule3 = require('../models/bookModel3')
+// const AuthorModel2 = require('../models/authorModel')
+// const BookController3 = require('../controllers/bookController3')
 
 
 
-router.post('/createBook1', BookController3.createBook1)
-module.exports = router;
+// router.post('/createBook1', BookController3.createBook1)
+// module.exports = router;
 
-router.post('/createAuthor', BookController3.createAuthor)
-module.exports = router;
+// router.post('/createAuthor', BookController3.createAuthor)
+// module.exports = router;
 
-router.get('/byAuthorId', BookController3.byAuthorId)
-module.exports = router;
+// router.get('/byAuthorId', BookController3.byAuthorId)
+// module.exports = router;
 
-router.get('/updateBook', BookController3.updateBook)
-module.exports = router;
+// router.get('/updateBook', BookController3.updateBook)
+// module.exports = router;
 
-router.get('/bookRange', BookController3.bookRange)
-module.exports = router;
+// router.get('/bookRange', BookController3.bookRange)
+// module.exports = router;
+
+
+const BookModel4 = require('../models/bookModel4')
+const AuthorModel4 = require('../models/authorModel')
+const BookController4 = require('../controllers/bookController4')
+
+router.post("/createAuthor4", BookController4.createAuthor4)
+module.exports = router
+
+router.post("/createbook4", BookController4.createBook4)
+module.exports = router
+
+router.get("/findBook", BookController4.findBook)
+module.exports = router
