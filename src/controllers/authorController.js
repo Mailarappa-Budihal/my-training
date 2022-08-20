@@ -14,6 +14,8 @@ const AuthorModel = require("../models/authorModel")
 // module.exports.createAuthor= createAuthor
 // module.exports.getAuthorsData= getAuthorsData
 
+
+//1st question
 const newAuthor = async function(req, res) {
     let Author = req.body
     let authorCreated = await AuthorModel.create(Author)
