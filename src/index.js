@@ -8,22 +8,27 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzotr.mongodb.net/Pritesh8769811-DB?retryWrites=true&w=majority", {
-    useNewUrlParser: true
-})
-.then( () => console.log("MongoDb is connected"))
-.catch ( err => console.log(err) )
+mongoose.connect("mongodb+srv://mailarappabudihal:pOeBfKpx3Z0kvvLT@cluster0.dzuw7wb.mongodb.net/mailarappabudihal-DB?retryWrites=true&w=majority", {
+        useNewUrlParser: true
+    })
+    .then(() => console.log("MongoDb is connected"))
+    .catch(err => console.log(err))
 
-app.use (
-    function (req, res, next) {
-        console.log ("inside GLOBAL MW");
-        next();
-  }
-  );
+const moment = require("moment")
+const time = moment()
 
-app.use('/', route);
+app.use(
+    function(req, res, next) {
+        console.log("Global Middleware ")
+        console.log(time.format("YYYY',MM,DD"))
+        console.log(time.format("h:mm:ss"))
+        console.log(req.ip)
+        console.log(req.baseUrl)
+        next()
+    }
 
+)
 
-app.listen(process.env.PORT || 3000, function () {
+app.listen(process.env.PORT || 3000, function() {
     console.log('Express app running on port ' + (process.env.PORT || 3000))
 });
