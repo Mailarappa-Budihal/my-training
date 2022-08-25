@@ -13,10 +13,21 @@ mongoose.connect("mongodb+srv://mailarappabudihal:pOeBfKpx3Z0kvvLT@cluster0.dzuw
     })
     .then(() => console.log("MongoDb is connected"))
     .catch(err => console.log(err))
+    // 
+    // <<<<<<< HEAD
+    // const moment = require("moment")
+    // const time = moment()
+    // =======
+    // app.use (
+    //     function (req, res, next) {
+    //         console.log ("inside GLOBAL MW");
+    //         next();
+    //   }
+    //   );
 
+// >>>>>>> 9e4c16d4ea1ae2e8bdde64eac93caf8467fd54bc
 const moment = require("moment")
 const time = moment()
-
 app.use(
     function(req, res, next) {
         console.log("Global Middleware ")
