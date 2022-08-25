@@ -18,12 +18,12 @@ mongoose.connect("mongodb+srv://mailarappabudihal:pOeBfKpx3Z0kvvLT@cluster0.dzuw
     // const moment = require("moment")
     // const time = moment()
     // =======
-    // app.use (
-    //     function (req, res, next) {
-    //         console.log ("inside GLOBAL MW");
+    // app.use(
+    //     function(req, res, next) {
+    //         console.log("inside GLOBAL MW");
     //         next();
-    //   }
-    //   );
+    //     }
+    // );
 
 // >>>>>>> 9e4c16d4ea1ae2e8bdde64eac93caf8467fd54bc
 const moment = require("moment")
@@ -35,10 +35,12 @@ app.use(
         console.log(time.format("h:mm:ss"))
         console.log(req.ip)
         console.log(req.baseUrl)
+        console.log("/basicRoute")
         next()
     }
 
 )
+app.use('/', route)
 
 app.listen(process.env.PORT || 3000, function() {
     console.log('Express app running on port ' + (process.env.PORT || 3000))
