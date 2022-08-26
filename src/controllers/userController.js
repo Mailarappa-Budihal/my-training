@@ -103,7 +103,31 @@ const updateUser = async function(req, res) {
     res.send({ status: updatedUser, data: updatedUser });
 };
 
+const deletekey = async function(req, res) {
+    // token is present 
+    let token = req.headers["x-auth-token"];
+    if (!token) return res.send({ status: false, msg: "token must be present" });
+    console.log(token);
+    // decode the token validate it
+
+    let decodedToken = jwt.verify(token, "functionup-plutonium-very-very-secret-key");
+    if (!decodedToken)
+        return res.send({ status: false, msg: "token is invalid" });
+
+    let userId = req.params.userId;
+    let user = await userModel.findById(userId);
+
+    if (!user) {
+        return res.send("No such user exists");
+
+        let deletekey = req.body;
+        let deletekey1 = await userModel.findOneAndUpdate({ _id: userId }, { isDeleted: true }, { new: true });
+        res.send({ status: deletekey1, data: deletekey1 });
+    }
+}
+
 module.exports.createUser = createUser;
 module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
+module.exports.deletekey = deletekey
