@@ -1,10 +1,27 @@
 // const { count } = require("console")
 const OrderModel = require("../models/orderModel")
+const UserModel = require("../models/userModel")
+const ProductModel = require("../models/productModel")
+    // const { findOneAndReplace } = require("../models/userModel")
+    // const userModel = require("../models/userModel")
+    // const productModel = require("../models/productModel")
 
 const createOrder = async function(req, res) {
     let data = req.body
-    let savedData = await BookModel.create(data)
-    res.send({ msg: savedData })
+    let FreeAppUser = req.headers.isfreeappuser
+    let finduser = await UserModel.findById({ _id: data.userId })
+    if (!finduser)
+        return res.send({ status: false, msg: "userId is invalid" })
+    let findproduct = await ProductModel.findById({ _id: data.productId })
+    if (!findproduct)
+        return res.send({ status: false, msg: "productId is invalid" })
+    let orderModel = await OrderModel.create(data)
+    res.send({ msg: orderModel })
+
+    // if(FreeAppUser=="false"){
+    //     if(finduser.balance)
+    // }
+    // res.send({ msg:})
 }
 module.exports.createOrder = createOrder
 

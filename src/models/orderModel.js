@@ -13,7 +13,7 @@ const authorSchema = new mongoose.Schema({
     },
     amount: Number,
     isFreeAppUser: Boolean,
-    date: Date.now()
+    date: String
         // author_id : Number,
         // author_name: String,
         // age: Number,

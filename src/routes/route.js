@@ -8,9 +8,10 @@ const router = express.Router();
 const UserController = require("../controllers/userController")
 const ProductController = require("../controllers/productController")
 const OrderController = require("../controllers/orderController")
+const Middleware = require("../middlewares/commonMiddlewares")
 
 
-router.post("/createUser1", UserController.createUser)
+router.post("/createUser1", Middleware.mid5, UserController.createUser1)
 router.post("/createProduct1", ProductController.createproduct)
 router.post("/createOrder", OrderController.createOrder)
 
