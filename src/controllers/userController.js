@@ -119,11 +119,11 @@ const deletekey = async function(req, res) {
 
     if (!user) {
         return res.send("No such user exists");
-
-        let deletekey = req.body;
-        let deletekey1 = await userModel.findOneAndUpdate({ _id: userId }, { isDeleted: true }, { new: true });
-        res.send({ status: deletekey1, data: deletekey1 });
     }
+    let userData = req.body;
+    let deleteUser = await userModel.findOneAndUpdate({ _id: userId }, { isDeleted: true }, { new: true });
+    res.send({ status: true, data: deleteUser });
+
 }
 
 module.exports.createUser = createUser;
