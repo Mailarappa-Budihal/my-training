@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
 
 const createUser = async function(req, res) {

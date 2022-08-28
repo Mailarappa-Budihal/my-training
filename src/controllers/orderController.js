@@ -2,27 +2,58 @@
 const OrderModel = require("../models/orderModel")
 const UserModel = require("../models/userModel")
 const ProductModel = require("../models/productModel")
+const userModel = require("../models/userModel")
+const productModel = require("../models/productModel")
+const orderModel = require("../models/orderModel")
     // const { findOneAndReplace } = require("../models/userModel")
     // const userModel = require("../models/userModel")
     // const productModel = require("../models/productModel")
 
 const createOrder = async function(req, res) {
     let data = req.body
-    let FreeAppUser = req.headers.isfreeappuser
-    let finduser = await UserModel.findById({ _id: data.userId })
-    if (!finduser)
+    let userId = data.userId
+    let productId = data.productId
+        // checking the validity of id
+    if (!userId)
         return res.send({ status: false, msg: "userId is invalid" })
-    let findproduct = await ProductModel.findById({ _id: data.productId })
-    if (!findproduct)
+    else if (!productId) {
         return res.send({ status: false, msg: "productId is invalid" })
-    let orderModel = await OrderModel.create(data)
-    res.send({ msg: orderModel })
+    }
+    // checking validity for function
 
-    // if(FreeAppUser=="false"){
-    //     if(finduser.balance)
-    // }
-    // res.send({ msg:})
+    let UserId = await userModel.findById(userId)
+    console.log(UserId)
+    let ProductId = await productModel.findById(productId)
+
+    if (!UserId) {
+        return res.send({ status: false, msg: "this UserId is not exist" })
+    } else if (!ProductId) {
+        return res.send({ status: false, msg: "This productId not exist" })
+    }
+    let token = req.headers.isfreeappuser
+    console.log(token)
+    let store = 0
+        // checking the condition for free app user True
+    if (token === "true") {
+        data.amount = store
+        data.isFreeAppUser = token
+        let createOrder = await OrderModel.create(data)
+        res.send({ msg: createOrder })
+    }
+    //checking condition for freeAppuser False
+    else if (UserId.balance >= ProductId.price) {
+        await userModel.findOneAndUpdate({ _id: userId }, { $set: { balance: UserId.balance - ProductId.price } })
+        data.amount = ProductId.price
+        data.isFreeAppUser = token;
+
+
+        let createOrder = await OrderModel.create(data)
+        res.send({ msg: createOrder })
+    } else {
+        res.send({ msg: "Insufficient Balance" })
+    }
 }
+
 module.exports.createOrder = createOrder
 
 

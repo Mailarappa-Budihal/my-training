@@ -22,9 +22,11 @@
 
 const mid5 = function(req, res, next) {
     let data = req.headers.isfreeappuser
+
     if (!data)
         return res.send({ msg: " the  request is missing mandatory header" })
     else {
+
         req.body["isFreeAppUser"] = true
     }
     next()
