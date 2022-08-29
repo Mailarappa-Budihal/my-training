@@ -76,9 +76,10 @@ const deleteUser = async function(req, res) {
     res.send({ msg: "user deleted successfully", data: deleteUser });
 }
 
+
 module.exports.createUser = createUser;
 module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
-// module.exports.postMessage = postMessage
+
 module.exports.deleteUser = deleteUser
