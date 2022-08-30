@@ -10,6 +10,7 @@ router.post("/login", userController.loginUser, Middleware.createtoken)
 //The userId is sent by front end
 router.get("/users/:userId", Middleware.Verifytoken, userController.getUserData)
 
+
 // router.post("/users/:userId/posts", Middleware.Verifytoken, userController.postMessage)
 
 router.put("/users/:userId", Middleware.Verifytoken, userController.updateUser)
