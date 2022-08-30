@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
+
 // 1st Question
 const createUser = async function(abcd, xyz) {
     try {
@@ -9,10 +10,11 @@ const createUser = async function(abcd, xyz) {
             // console.log(abcd.newAtribute);
             xyz.status(201).send({ status: true, msg: savedData });
         } else {
-            xyz.status(400).send({ status: false, msg: "bad request" });
+            xyz.status(400).send({ status: false, msg: " Bad request" });
         }
     } catch (error) {
-        xyz.status(500).send({ "error 400": error.message });
+        console.log("this is error", error.message);
+        xyz.status(500).send({ msg: "server error", error: error.message });
     }
 };
 
@@ -22,25 +24,27 @@ const loginUser = async function(req, res) {
     try {
         let userName = req.body.emailId;
         let password = req.body.password;
-        let user = await userModel.findOne({ emailId: userName, password: password });
+        let user = await userModel.findOne({
+            emailId: userName,
+            password: password,
+        });
         if (!user)
-            return res.status(404).send({
+            return res.status(401).send({
                 status: false,
                 msg: "username or the password is not corerct",
             });
         let payload = {
             userId: user._id.toString(),
             mobile: "9535109736",
-            organisation: "Function-up"
-        }
-        let token = jwt.sign(payload,
-            "functionup-plutonium-batch-2"
-        );
+            organisation: "Function-up",
+        };
+        let token = jwt.sign(payload, "functionup-plutonium-batch-2");
         res.setHeader("x-auth-token", token);
         res.status(200).send({ status: true, token: token });
-    } catch (error) { res.status(500).send({ msg: error.message }) }
-}
-
+    } catch (error) {
+        res.status(500).send({ msg: "server error", error: error.message });
+    }
+};
 
 // let userName = req.body.emailId;
 // let password = req.body.password;
@@ -84,10 +88,8 @@ const getUserData = async function(req, res) {
         } else {
             res.status(200).send({ status: true, data: userDetails });
         }
-    } catch (err) {
-        xyz.status(500).send({
-            msg: "server side issue",
-        });
+    } catch (error) {
+        res.status(500).send({ msg: "Server error", error: error.message });
     }
 };
 
@@ -111,9 +113,7 @@ const updateUser = async function(req, res) {
             res.status(200).send({ status: updatedUser, data: updatedUser });
         }
     } catch (error) {
-        res.status(500).send({
-            msg: "server side issue",
-        });
+        res.status(500).send({ msg: "server error", error: error.message });
     }
 };
 
@@ -132,10 +132,8 @@ const deleteUser = async function(req, res) {
                 .status(200)
                 .send({ msg: "user deleted successfully", data: deleteUser });
         }
-    } catch (err) {}
-    res.status(500).send({
-        msg: "server side issue",
-    });
+    } catch (error) {}
+    res.status(500).send({ msg: "server error", error: error.message });
 };
 
 module.exports.createUser = createUser;

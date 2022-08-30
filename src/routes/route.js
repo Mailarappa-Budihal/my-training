@@ -13,8 +13,8 @@ router.get("/users/:userId", Middleware.Verifytoken, Middleware.Authorisation, u
 
 // router.post("/users/:userId/posts", Middleware.Verifytoken, userController.postMessage)
 
-router.put("/users/:userId", Middleware.Verifytoken, userController.updateUser)
+router.put("/users/:userId", Middleware.Verifytoken, Middleware.Authorisation, userController.updateUser)
 
-router.delete('/users/:userId', Middleware.Verifytoken, userController.deleteUser)
+router.delete('/users/:userId', Middleware.Verifytoken, Middleware.Authorisation, userController.deleteUser)
 
 module.exports = router;
