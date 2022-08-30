@@ -5,10 +5,10 @@ const Middleware = require("../middleware/auth")
 
 router.post("/users", userController.createUser)
 
-router.post("/login", userController.loginUser, Middleware.createtoken)
+router.post("/login", userController.loginUser)
 
 //The userId is sent by front end
-router.get("/users/:userId", Middleware.Verifytoken, userController.getUserData)
+router.get("/users/:userId", Middleware.Verifytoken, Middleware.Authorisation, userController.getUserData)
 
 
 // router.post("/users/:userId/posts", Middleware.Verifytoken, userController.postMessage)
