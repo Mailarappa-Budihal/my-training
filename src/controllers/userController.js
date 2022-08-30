@@ -11,8 +11,8 @@ const createUser = async function(abcd, xyz) {
         } else {
             xyz.status(400).send({ status: false, msg: "bad request" });
         }
-    } catch (err) {
-        xyz.status(500).send({ msg: "server side issue" });
+    } catch (error) {
+        xyz.status(500).send({ "error 400": error.message });
     }
 };
 
@@ -38,7 +38,7 @@ const loginUser = async function(req, res) {
         );
         res.setHeader("x-auth-token", token);
         res.status(200).send({ status: true, token: token });
-    } catch (error) { res.status(500).send({ msg: "token is invalid and server issue" }) }
+    } catch (error) { res.status(500).send({ msg: error.message }) }
 }
 
 
