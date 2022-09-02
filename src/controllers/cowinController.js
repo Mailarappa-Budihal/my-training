@@ -1,8 +1,7 @@
 let axios = require("axios")
 
 
-
-
+// ------------------------1st question-----------------------------------
 let getBydistrictid = async function(req, res) {
     try {
         let Districtid = req.query.district_id
@@ -14,13 +13,14 @@ let getBydistrictid = async function(req, res) {
 
         }
         let result = await axios(options);
-        // console.log(result)
+        console.log(result)
         let data = result.data
         res.status(200).send({ msg: data })
     } catch (error) { res.status(500).send({ msg: error.message }) }
 }
 
-
+module.exports.getBydistrictid = getBydistrictid
+    // ------------------2nd question----------------------------------------
 
 let weatherOflondon = async function(req, res) {
     try {
@@ -38,6 +38,8 @@ let weatherOflondon = async function(req, res) {
 
 }
 
+
+
 let sortedCities = async function(req, res) {
     try {
         let cities = ["Bengaluru", "Mumbai", "Delhi", "Kolkata", "Chennai", "London", "Moscow"]
@@ -51,14 +53,18 @@ let sortedCities = async function(req, res) {
         }
 
         // myarray.sort((a, b) => a.distance -b.distance)
-        let sorting = cityObjectArray.sort((a, b) => { return a.temp - b.temp })
+        let sorting = cityObjectArray.sort(function(a, b) { return a.temp - b.temp })
         console.log(sorting)
         res.status(200).send({ status: true, msg: sorting })
 
     } catch (error) { res.status(500).send({ error: error.message }) }
 }
 
+module.exports.weatherOflondon = weatherOflondon
+module.exports.sortedCities = sortedCities
 
+
+// ------------------------3rd question-----------------------------------
 
 let getmemes = async function(req, res) {
     try {
@@ -76,16 +82,18 @@ let getmemes = async function(req, res) {
     }
 }
 
+
 let memesedit = async function(req, res) {
     try {
         let templateId = req.query.template_id
+        let Text = req.query.text0
         let Text1 = req.query.text1
         let Username = req.query.username
         let Password = req.query.password
 
         var options = {
             method: "post",
-            url: `https://api.imgflip.com/caption_image?template_id=${templateId}&text1=${Text1}&username=${Username}&password=${Password}`
+            url: `https://api.imgflip.com/caption_image?template_id=${templateId}&text0=${Text}text1=${Text1}&username=${Username}&password=${Password}`
         }
 
         let result = await axios(options)
@@ -96,11 +104,12 @@ let memesedit = async function(req, res) {
         res.status(500).send({ msg: err.message })
     }
 }
-
-
-
-module.exports.getBydistrictid = getBydistrictid
-module.exports.weatherOflondon = weatherOflondon
-module.exports.sortedCities = sortedCities
 module.exports.getmemes = getmemes
 module.exports.memesedit = memesedit
+
+
+// module.exports.getBydistrictid = getBydistrictid
+// module.exports.weatherOflondon = weatherOflondon
+// module.exports.sortedCities = sortedCities
+// module.exports.getmemes = getmemes
+// module.exports.memesedit = memesedit

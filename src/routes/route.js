@@ -19,10 +19,11 @@ router.get("/test-me", function(req, res) {
 
 
 router.get("/cowin/getBydistrictid", CowinController.getBydistrictid)
-router.get("/weather/getweather",
-    CowinController.weatherOflondon)
+
+router.get("/weather/getweather", CowinController.weatherOflondon)
 
 router.get("/sortedcities", CowinController.sortedCities)
+
 router.get("/getmemes", CowinController.getmemes)
 router.post("/memesedit", CowinController.memesedit)
 
